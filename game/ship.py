@@ -1,4 +1,8 @@
 class Ship:
     def __init__(self):
-        # self.
-        pass
+        from game.room import Room
+        self.bridge = Room()
+        self.engine = Room()
+        self.cabin = Room()
+
+    

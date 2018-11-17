@@ -6,6 +6,7 @@ class Materials:
         self.screw = 1000
         self.iron = 0
         self.gold = 50
+        self.stones = 10
 
     def materials_list(self):
         names = [i for i in dir(self) if (not callable(getattr(self, i)) and i.find('__') == -1)]
