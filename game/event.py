@@ -12,7 +12,7 @@ class Event:
 
 
 if __name__ == '__main__':
-    from game.materials import Materials
+    from materials import Materials
     m = Materials()
     e = Event()
 
