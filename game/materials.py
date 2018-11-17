@@ -10,9 +10,8 @@ class Materials:
         self.gold = 50
 
     # @classmethod
-    def materials_list(self, b):
-        print(b)
-        variables = [i for i in dir(self) if (not callable(i) and i.find('__') == -1)]
+    def materials_list(self):
+        variables = [i for i in dir(self) if (not callable(self.__getattribute__(i)) and i.find('__') == -1)]
         return variables
 
     def materials_add(self):
@@ -22,13 +21,16 @@ if __name__ == '__main__':
     t = Materials()
     # variables = [i for i in dir(t) if (not callable(i) and i.find('__') == -1)]
 
-    import inspect
-
-    for i in dir(t):
-        print(i)
-        print(inspect.ismethod(t.__getattribute__(i)))
-        print()
+    # import inspect
+    #
+    # for i in dir(t):
+    #     print(i)
+    #     print(inspect.ismethod(t.__getattribute__(i)))
+    #     print()
 
     # variables = [i for i in dir(t) if (not inspect.isfunction(i) and i.find('__') == -1)]
     # print(variables)
     # print(type(variables[1]))
+
+    names = t.materials_list()
+    print(names)
