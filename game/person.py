@@ -1,3 +1,5 @@
+from inventory import Inventory
+
 class Person:
     def __init__(self, strength, brainpower, agility, charisma, perception, vitality, hunger, thirst, fatigue, morale,
                  health, injury, time):
@@ -13,6 +15,7 @@ class Person:
         self.current_perception = perception
         self.vitality = vitality
         self.current_vitality = vitality
+        self.inventory = Inventory()
 
         self.hunger = hunger
         self.thirst = thirst

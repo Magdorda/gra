@@ -1,5 +1,3 @@
-
-
 class Materials:
     def __init__(self):
         self.fuel = 1000
@@ -9,26 +7,27 @@ class Materials:
         self.iron = 0
         self.gold = 50
 
-    # @classmethod
-    def materials_list(self, b):
-        print(b)
-        variables = [i for i in dir(self) if (not callable(i) and i.find('__') == -1)]
-        return variables
+    def materials_list(self):
+        names = [i for i in dir(self) if (not callable(getattr(self, i)) and i.find('__') == -1)]
+        # names = [i for i in dir(self) if (not callable(self.__getattribute__(i)) and i.find('__') == -1)]
+        return names
 
-    def materials_add(self):
-        pass
+    def materials_change(self, change):
+        for name, amount in change.items():
+            how_many = getattr(self, name)
+            how_many = how_many + amount
+            setattr(self, name, how_many)
+
+    def materials_status(self):
+        status = {}
+        names = self.materials_list()
+        for name in names:
+            amount = getattr(self, name)
+            status[name] = amount
+        return status
 
 if __name__ == '__main__':
     t = Materials()
-    # variables = [i for i in dir(t) if (not callable(i) and i.find('__') == -1)]
 
-    import inspect
-
-    for i in dir(t):
-        print(i)
-        print(inspect.ismethod(t.__getattribute__(i)))
-        print()
-
-    # variables = [i for i in dir(t) if (not inspect.isfunction(i) and i.find('__') == -1)]
-    # print(variables)
-    # print(type(variables[1]))
+    names = t.materials_list()
+    print(names)
