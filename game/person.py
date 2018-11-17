@@ -1,8 +1,9 @@
 from inventory import Inventory
 
+
 class Person:
     def __init__(self, strength, brainpower, agility, charisma, perception, vitality, hunger, thirst, fatigue, morale,
-                 health, injury, time):
+                 morale_factor, health, status_effects, time):
         self.strength = strength
         self.current_strength = strength
         self.brainpower = brainpower
@@ -21,9 +22,10 @@ class Person:
         self.thirst = thirst
         self.fatigue = fatigue
         self.morale = morale
+        self.morale_factor = morale_factor
         self.health = health
-        self.injury = injury
-        self.injury = set()
+        self.status_effects = status_effects
+        self.status_effects = set()
         self.time = time
 
     def hunger_condition(self):
@@ -45,27 +47,53 @@ class Person:
 
     def morale_status(self):
         if self.morale == 0:
-            #self.injury
-            pass
+            """add mental breakdown status effect"""
         if 1 <= self.morale <= 10:
-            pass
+            self.morale_factor = -3
+            self.current_charisma -= 3
+            self.current_vitality -= 3
+            self.current_brainpower -= 2
+            self.current_strength -= 2
+            self.current_agility -= 2
+            self.current_perception -= 2
 
         if 11 <= self.morale <= 30:
-            pass
+            self.morale_factor = -2
+            self.current_charisma -= 2
+            self.current_vitality -= 2
+            self.current_brainpower -= 1
+            self.current_strength -= 1
+            self.current_agility -= 1
+            self.current_perception -= 1
 
-        if 31 <= self.morale <= 50:
-            self.charisma -= 1
-            self.vitality -= 1
+        if 31 <= self.morale <= 45:
+            self.morale_factor = -1
+            self.current_charisma -= 1
+            self.current_vitality -= 1
 
-        if 51 <= self.morale <= 70:
-            self.charisma += 1
-            self.vitality += 1
+        if 46 <= self.morale <= 55:
+            self.morale_factor = 0
+
+        if 56 <= self.morale <= 70:
+            self.morale_factor = 1
+            self.current_charisma += 1
+            self.current_vitality += 1
 
         if 71 <= self.morale <= 90:
-            pass
+            self.morale_factor = 2
+            self.current_charisma += 1
+            self.current_vitality += 1
+            self.current_brainpower += 1
+            self.current_perception += 1
 
         if 91 <= self.morale <= 100:
-            pass
+            self.morale_factor = 3
+            self.current_charisma += 2
+            self.current_vitality += 2
+            self.current_brainpower += 2
+            self.current_perception += 1
+            self.current_agility += 1
+            self.current_strength += 1
 
     def injuries(self):
         pass
@@ -99,7 +127,7 @@ class Person:
             self.hunger += 1
         if not self.time % 3:
             self.thirst += 1
-        if not self.time % 2:
+        if not self.time % 3:
             self.fatigue += 1
 
 
