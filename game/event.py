@@ -23,6 +23,9 @@ class Event:
             losed[i] = amount
         return losed
 
+    def injure_person(self, person, injure_kind):
+        pass
+
 
 if __name__ == '__main__':
     from game.materials import Materials
