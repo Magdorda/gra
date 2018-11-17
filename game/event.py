@@ -11,6 +11,7 @@ class Event:
         for i in names:
             amount = random.randrange(1, 150)
             founded[i] = amount
+        # zmienic morale
         return founded
 
     def lose_materials(self, material):
@@ -21,9 +22,11 @@ class Event:
         for i in names:
             amount = random.randrange(-50, -1)
             losed[i] = amount
+        # zmienic morale
         return losed
 
     def injure_person(self, person, injure_kind):
+        # zmienic morale
         pass
 
 
