@@ -2,6 +2,12 @@ class NoMoreWear(Exception):
     """ No more items can wear exception """ 
     pass
 
+
+class NoSuchBodyPart(Exception):
+    """ No more items can wear exception """ 
+    pass
+
+
 class Inventory:
     """ Character personal inventory """
     ITEMS_LIMIT = 2
@@ -27,7 +33,7 @@ class Inventory:
         elif body_part == 'legs':
             self._wear(self.legs, item_name)
         else:
-            print('No such body part')
+            raise NoSuchBodyPart('no such body part')
     
     def unwear_item(self, body_part, item_name):
         if body_part == 'head':
@@ -39,8 +45,7 @@ class Inventory:
         elif body_part == 'legs':
             self.legs.remove(item_name)
         else:
-            print('No such body part')
-
+            raise NoSuchBodyPart('no such body part')
 
     def _wear(self, part, item_name):
         if len(part) < self.ITEMS_LIMIT:
