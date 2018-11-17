@@ -5,4 +5,3 @@ class Ship:
         self.engine = Room()
         self.cabin = Room()
 
-    
