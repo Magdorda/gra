@@ -1,4 +1,4 @@
-from inventory import Inventory
+from game.inventory import Inventory
 
 class Person:
     def __init__(self, strength, brainpower, agility, charisma, perception, vitality, hunger, thirst, fatigue, morale,
